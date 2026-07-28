@@ -19,3 +19,5 @@ data/out/*
 # COMMITTED on purpose:
 #   - data/in/  (your chosen PDF — the organisers check answers against it)
 #   - submission/  (your team.json + the nine answers — your deliverable)
+
+CLAUDE.md
