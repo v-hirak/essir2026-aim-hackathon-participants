@@ -1,1 +1,43 @@
-{}
+{
+  "question_id": "q8a35c8",
+  "level": 2,
+  "question": "How did the generated letters perform on those two dimensions compared with the original and masked letters?",
+  "answer": "*   **Narrative coherence:** The generated letters had a score of 0.460, which was slightly lower than the original letters' score (0.664), but higher than the masked letters' score (0.418).\n*   **Clinical soundness:** The average clinical soundness score for the generated letters was 0.604, which was slightly lower than the original letters' score (0.766) and also lower than the masked letters' score (0.611).",
+  "conversation_id": "level-2",
+  "sources": [
+    {
+      "page": 3,
+      "quote": "1. How do different models perform in masking and generating clinical letters? 2. How should the text be segmented in clinical letter generation? 3. How do different masking strategies affect the quality of synthetic letters? 4. How can we evaluate the quality of synthetic letters? To answer these",
+      "score": 0.8504
+    },
+    {
+      "page": 23,
+      "quote": "nical soundness scores comparable to the masked letters and close to the original ones — demonstrating the overall potential of our synthetic letters to replace real ones. Narrative coherence: As expected, the narrative coherence score of the generated letters (0.460) is slightly lower than that of",
+      "score": 0.835
+    },
+    {
+      "page": 23,
+      "quote": "able 10 Clinical soundness: The average clinical soundness score of the generated letters (0.604) is slightly lower than that of the original letters (0.766). Surprisingly, it is even lower than the score of the masked letters (0.611). We further identi ﬁed all cases where the generated letters",
+      "score": 0.8309
+    },
+    {
+      "page": 7,
+      "quote": "This matches the ﬁndings from Amin-Nejad et al. ( 75).  A lower random masking ratio (i.e., masked tokens/total tokens) can generate higher-quality synthetic texts. These very recent ﬁndings provide insightful inspiration to our investigation. Our work builds on their research, expanding on",
+      "score": 0.8287
+    },
+    {
+      "page": 7,
+      "quote": "s with synthetic letters. Most existing research involves ﬁne-tuning PLMs or training transformer-based models from scratch on their datasets through supervised learning. These studies explore different ways to learn mapping from the original raw text to synthetic text and work on generating",
+      "score": 0.8269
+    }
+  ],
+  "diagnostics": {
+    "provider": "ollama",
+    "chat_model": "gemma4:latest",
+    "embedding_model": "intfloat/multilingual-e5-large",
+    "retrieved_chunks": 5,
+    "tokens": null,
+    "latency_ms": 8280,
+    "timestamp": "2026-07-31T12:01:07Z"
+  }
+}
