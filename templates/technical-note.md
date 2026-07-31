@@ -1,4 +1,4 @@
-# Technical note — Team <name>
+# Technical note — Team SHLV
 
 **Two pages.** Evidence-dense beats long. Commit it to your fork as `TECHNICAL_NOTE.md`
 and delete this guidance before submitting.
@@ -18,8 +18,8 @@ should be able to redraw your `app/rag/` from this.*
 
 | Stage | What you did | Changed from the scaffold? |
 |---|---|---|
-| Extraction | | |
-| Chunking | | |
+| Extraction | One major issue with the pypdf reader was that it removed all structural information and split the text as per the line. After experimenting with several other pdf readers, we chose pymupdf because it offered the cleanest text. Furthermore, pymupdf also has a functionality of splitting the pdf text into "blocks", i.e., paragraphs already. So we extracted the text as per blocks and stored the page number as part of the block's metadata which were then passed to the chunking function.
+| Chunking | For the chunking, we mostly experimented with different chunk size and overlap combinations until a set of random examples reflected a sensible split of the text.
 | Embeddings / index | | |
 | Retrieval | | |
 | Answer + citation | | |

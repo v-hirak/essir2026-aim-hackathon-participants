@@ -1,7 +1,10 @@
 {
-  "team_name": "",
+  "team_name": "SHLV",
   "members": [
-    { "name": "", "email": "" }
+    { "name": "Sarah Bouaraba", "email": "sarah.bouaraba.2000@gmail.com" },
+    { "name": "Libo Ren", "email": "libo.ren@modul.ac.at" },
+    { "name": "Vitalii Hirak", "email": "vitalii.hirak@hhu.de" },
+    { "name": "Hrishita Chakrabarti", "email": "h.chakrabarti@tudelft.nl" }
   ],
-  "repo_url": ""
+  "repo_url": "https://github.com/v-hirak/essir2026-aim-hackathon-participants"
 }
