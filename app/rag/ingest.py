@@ -11,8 +11,14 @@ from __future__ import annotations
 import uuid
 from pathlib import Path
 
-from pypdf import PdfReader
+# from pypdf import PdfReader
 from qdrant_client import models
+
+import re
+import unicodedata
+import pymupdf
+
+from langchain_core.documents import Document
 
 from ..config import get_settings
 from ..models import IngestResponse
@@ -37,6 +43,47 @@ def _find_pdf(filename: str | None) -> Path:
         raise FileNotFoundError(f"no *.pdf found in {in_dir}/ — put your document there first")
     return pdfs[0]
 
+def clean_block(text: str) -> str:
+    """
+    Normalize PDF text while preserving list structure.
+    """
+
+    # Convert ligatures: ﬁ -> fi, ﬂ -> fl, etc.
+    text = unicodedata.normalize("NFKC", text)
+
+    lines = [line.rstrip() for line in text.splitlines()]
+
+    # Numbered lists, bullets, lettered lists
+    list_pattern = re.compile(
+        r"^\s*(\d+[\.\)]|[a-zA-Z][\.\)]|[-*•])\s+"
+    )
+
+    cleaned = []
+
+    for line in lines:
+        stripped = line.strip()
+
+        if not stripped:
+            cleaned.append("\n")
+            continue
+
+        if list_pattern.match(stripped):
+            cleaned.append("\n" + stripped)
+            continue
+
+        # Join wrapped lines within a paragraph
+        if cleaned and not cleaned[-1].endswith("\n"):
+            cleaned.append(" " + stripped)
+        else:
+            cleaned.append(stripped)
+
+    text = "".join(cleaned)
+
+    # Clean up excessive blank lines
+    text = re.sub(r"\n{3,}", "\n\n", text)
+
+    return text.strip()
+
 
 def extract_pages(path: Path) -> list[str]:
     """Per-page text via pypdf.
@@ -46,8 +93,38 @@ def extract_pages(path: Path) -> list[str]:
       document, your extractor is usually why. Try pdfplumber, PyMuPDF, Docling,
       GROBID or Marker and keep whichever reads your document best.
     """
-    reader = PdfReader(str(path))
-    return [(page.extract_text() or "") for page in reader.pages]
+    # reader = PdfReader(str(path))
+    # return [(page.extract_text() or "") for page in reader.pages]
+
+    # ---------------------------------------------------
+    # Read PDF and create one LangChain Document per block
+    # ---------------------------------------------------
+
+    pdf = pymupdf.open(str(path))
+
+    documents = []
+
+    for page_num, page in enumerate(pdf):
+        blocks = page.get_text("blocks")
+
+        for block_num, block in enumerate(blocks):
+            text = clean_block(block[4])
+
+            if not text:
+                continue
+
+            documents.append(
+                Document(
+                    page_content=text,
+                    metadata={
+                        "source": path,
+                        "page": page_num + 1,
+                        "block": block_num,
+                    },
+                )
+            )
+
+    return documents
 
 
 def ingest(filename: str | None = None, reset: bool = False) -> IngestResponse:

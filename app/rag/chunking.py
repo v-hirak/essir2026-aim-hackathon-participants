@@ -11,6 +11,9 @@ Implementing real chunking is one of the first things that will improve your Lev
 from __future__ import annotations
 
 from dataclasses import dataclass
+from langchain_core.documents import Document
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from ..config import get_settings
 
 
 @dataclass
@@ -18,6 +21,7 @@ class Chunk:
     text: str
     page: int      # 1-indexed
     index: int     # position within the document
+    block: int     # block within a page, 0-indexed
 
 
 def chunk_pages(pages: list[str]) -> list[Chunk]:
@@ -33,12 +37,49 @@ def chunk_pages(pages: list[str]) -> list[Chunk]:
     The settings `chunk_size` / `chunk_overlap` exist for when you implement this — they are
     unused by the baseline.
     """
-    chunks: list[Chunk] = []
+    # chunks: list[Chunk] = []
+    # idx = 0
+    # for page_no, text in enumerate(pages, start=1):
+    #     text = text.strip()
+    #     if not text:
+    #         continue
+    #     chunks.append(Chunk(text=text, page=page_no, index=idx))
+    #     idx += 1
+    # return chunks
+
+    # ---------------------------------------------------
+    # Split only large blocks
+    # ---------------------------------------------------
+
+    s = get_settings()
+
+    splitter = RecursiveCharacterTextSplitter(
+        # separators=[
+        #     "\n\n",
+        #     "\n",
+        #     ". ",
+        #     " ",
+        #     "",
+        # ],
+        chunk_size=s.CHUNK_SIZE,
+        chunk_overlap=s.CHUNK_OVERLAP,
+    )
+
+    chunks = splitter.split_documents(pages)
+
+    final_chunks: list[Chunk] = []
     idx = 0
-    for page_no, text in enumerate(pages, start=1):
-        text = text.strip()
-        if not text:
-            continue
-        chunks.append(Chunk(text=text, page=page_no, index=idx))
+    for chunk in chunks:
+        final_chunks.append(Chunk(text=chunk.page_content, page=chunk.metadata["page"], bloc=chunk.metadat["block"], index=idx))
         idx += 1
-    return chunks
+
+    return final_chunks
+
+    # print(f"Documents: {len(documents)}")
+    # print(f"Chunks: {len(chunks)}")
+
+    # # Inspect a few chunks
+    # for chunk in chunks[:3]:
+    #     print("=" * 80)
+    #     print(chunk.metadata)
+    #     print(chunk.page_content[:500])

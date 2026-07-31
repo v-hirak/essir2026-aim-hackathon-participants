@@ -56,11 +56,11 @@ class VectorStore:
         # TODO(level-1): plain dense search. Consider hybrid (dense + sparse/BM25),
         #                which Qdrant supports with named vectors + Query API.
         # TODO(level-3): pass a query_filter to scope retrieval to part of the doc.
-        return self.client.search(
+        return self.client.query_points(
             collection_name=self.collection,
             query_vector=vector,
             limit=top_k,
-            with_payload=True,
+            # with_payload=True,
         )
 
 
