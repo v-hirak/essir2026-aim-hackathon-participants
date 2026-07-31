@@ -19,6 +19,7 @@ from ..llm.base import LLMError, Message
 from ..llm.factory import get_client
 from ..models import Diagnostics, QueryRequest, QueryResponse, Source
 from . import memory
+from .level3_semantic import retrieve_semantic_two_hop
 from .retrieve import Context, retrieve
 
 SYSTEM_PROMPT = (
@@ -51,7 +52,7 @@ def _sources_from(contexts: list[Context]) -> list[Source]:
     for c in contexts:
         quote = c.text.strip().replace("\n", " ")
         if len(quote) > 300:
-            quote = quote[:300].rsplit(" ", 1)[0] + "…"
+            quote = quote[:300].rsplit(" ", 1)[0]
         out.append(Source(page=c.page, quote=quote, score=round(c.score, 4)))
     return out
 
@@ -79,8 +80,13 @@ def answer(req: QueryRequest) -> QueryResponse:
     now = datetime.now(UTC)
     started = time.perf_counter()
 
-    contexts = retrieve(req.question, top_k, history)
+    if req.level == 3:
+        contexts = retrieve_semantic_two_hop(req.question, top_k)
+    else:
+        contexts = retrieve(req.question, top_k, history)
     messages = _build_messages(req.question, contexts, history)
+    if req.level == 3:
+        messages[0]["content"] += " Cite factual conclusions as (p. X) using the context pages."
 
     try:
         answer_text = client.chat(messages)
