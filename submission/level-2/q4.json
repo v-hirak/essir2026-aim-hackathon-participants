@@ -1,1 +1,43 @@
-{}
+{
+  "question_id": "qb1d8a1",
+  "level": 2,
+  "question": "How did the authors conduct the expert-simulated evaluation of clinical quality, and which two dimensions did it assess?",
+  "answer": "The authors conducted the expert-simulated evaluation of clinical quality by employing GPT-3.5-Turbo through prompt-based evaluation. The two perspectives assessed were:\n\n1.  **Clinical soundness:** This measures whether the content aligns with medical factuality.\n2.  **Narrative coherence:** This evaluates whether the letter is contextually consistent and resembles a real-world clinical letter.",
+  "conversation_id": "level-2",
+  "sources": [
+    {
+      "page": 15,
+      "quote": "clinical information is largely preserved. However, it is important to note that this method only evaluates the effectiveness of preserving clinical narratives at the semantic level and does not guarantee medical factuality. Expert-simulated evaluation of clinical quality: To further evaluate the",
+      "score": 0.8366
+    },
+    {
+      "page": 7,
+      "quote": "ted to evaluate the error rate at the section level (e.g., diagnoses, social context, etc.). It includes four dimensions:  Minor omissions,  Severe omissions,  Unnecessary text, and  Incorrect additional text. Each discharge summary was evaluated by at least two clinicians, and the authors",
+      "score": 0.8343
+    },
+    {
+      "page": 7,
+      "quote": "entary Figure S3, the authors used clinical notes from MIMIC-III as input and incorporated a one-shot summary along with clinical guidance as prompts to generate discharge summaries by GPT-4-turbo. Initially, ﬁve sample synthetic summaries were evaluated by a clinician. Based on the feedback, the",
+      "score": 0.8281
+    },
+    {
+      "page": 26,
+      "quote": " Evaluation benchmark:A new metric suitable for our task should be developed. Speci ﬁcally, this metric should consider both similarity and diversity. Weighting parameters for each dimension could be useful and can be obtained through neural networks. For evaluating clinical soundness, it is",
+      "score": 0.8275
+    },
+    {
+      "page": 24,
+      "quote": "Expert-simulated evaluation results. Metric Avg. Max. Min. Std. Clinical soundness Baseline (original) 0.766 1.0 0.5 0.11 Baseline (masked) 0.611 1.0 0.5 0.147 Generation performance 0.604 1.0 0.5 0.145 Narrative coherence Baseline (original) 0.664 0.8 0.3 0.082 Baseline (masked) 0.418 0.7 0.2",
+      "score": 0.8273
+    }
+  ],
+  "diagnostics": {
+    "provider": "ollama",
+    "chat_model": "gemma4:latest",
+    "embedding_model": "intfloat/multilingual-e5-large",
+    "retrieved_chunks": 5,
+    "tokens": null,
+    "latency_ms": 8252,
+    "timestamp": "2026-07-31T12:00:59Z"
+  }
+}

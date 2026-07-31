@@ -1,1 +1,43 @@
-{}
+{
+  "question_id": "q28eb6c",
+  "level": 1,
+  "question": "Why were the letters processed in chunks rather than in sentences?",
+  "answer": "Processing letters at the sentence level was found to be both time-consuming and inadequate, as it failed to provide the model with enough information for inference and prediction. Therefore, the letters were processed in chunks instead.",
+  "conversation_id": "level-1",
+  "sources": [
+    {
+      "page": 10,
+      "quote": "meaning and structure of clinical letters, thereby improving its ability to retain essential clinical information while ef ﬁciently processing the text. In fact, we initially generated letters at the sentence level. However, it was found that processing at the sentence level is not only",
+      "score": 0.8565
+    },
+    {
+      "page": 10,
+      "quote": "rning approaches to identify sentence boundaries. Each clinical letter is treated as a separate processing unit, with the ﬁrst sentence automatically assigned to the ﬁrst text block (chunk). To control the length of each chunk, we set a maximum line count parameter (max_lines). If the ﬁrst sentence",
+      "score": 0.8258
+    },
+    {
+      "page": 10,
+      "quote": "o note that although all BERT family models use word-piece tokenization, the results can still differ. This is because different models use different vocabularies during pre- training, leading to variations in tokenization granularity. The tokenization methods for each model are detailed in",
+      "score": 0.8227
+    },
+    {
+      "page": 10,
+      "quote": "e there is no clear sentence boundary, these sentences may exceed the tokens limitation. To address this , we ﬁrst checked whether the sentence being processed exceeds th e token limit (max_tokens). If it does not, the sentence will b e added to the current chunk. Otherwise, the sentence should be",
+      "score": 0.8186
+    },
+    {
+      "page": 9,
+      "quote": "rged the clinical letters ﬁle and annotations ﬁle into a new DataFrame. After this, we extracted manually annotated entities based on their index. An excerpt from an original letter is shown in Supplementary Figure S6 , and the manually annotated entities are listed in Supplementary Table S3 .",
+      "score": 0.8172
+    }
+  ],
+  "diagnostics": {
+    "provider": "ollama",
+    "chat_model": "gemma4:latest",
+    "embedding_model": "intfloat/multilingual-e5-large",
+    "retrieved_chunks": 5,
+    "tokens": null,
+    "latency_ms": 5447,
+    "timestamp": "2026-07-31T12:00:48Z"
+  }
+}

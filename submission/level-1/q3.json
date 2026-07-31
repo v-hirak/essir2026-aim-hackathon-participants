@@ -1,1 +1,43 @@
-{}
+{
+  "question_id": "qba2c57",
+  "level": 1,
+  "question": "In the expert-simulated evaluation, how did the narrative coherence score of the generated clinical letters compare with those of the original and masked letters?",
+  "answer": "The narrative coherence score for the generated letters (0.460) was slightly lower than that of the original ones (0.664), but it was higher than that of the masked letters (0.418).",
+  "conversation_id": "level-1",
+  "sources": [
+    {
+      "page": 23,
+      "quote": "nical soundness scores comparable to the masked letters and close to the original ones — demonstrating the overall potential of our synthetic letters to replace real ones. Narrative coherence: As expected, the narrative coherence score of the generated letters (0.460) is slightly lower than that of",
+      "score": 0.8895
+    },
+    {
+      "page": 23,
+      "quote": "mean similarity score reaches 0.98, which is slightly higher than the score obtained using the BERTScore metric. This may be because BioGPT evaluates semantic similarity from a clinical perspective. Additionally, such a high score suggests that the synthetic clinical letters can potentially serve",
+      "score": 0.8841
+    },
+    {
+      "page": 15,
+      "quote": "clinical information is largely preserved. However, it is important to note that this method only evaluates the effectiveness of preserving clinical narratives at the semantic level and does not guarantee medical factuality. Expert-simulated evaluation of clinical quality: To further evaluate the",
+      "score": 0.8821
+    },
+    {
+      "page": 23,
+      "quote": "hown in Table 8 , spaCy models trained on original and synthetic letters showed similar evaluation scores. They even achieved F1 scores comparable to ScispaCy ’s score of 0.843. Therefore, the unmasked context appears to have minimal inﬂuence on model understanding. Consequently, our synthetic",
+      "score": 0.8748
+    },
+    {
+      "page": 24,
+      "quote": "appropriate masking strategies for different scenarios, as presented in Table 11 . As mentioned earlier, we observe that when most clinical terms are preserved, ﬁne-tuning the model may not be necessary. In terms of clinical evaluation, hallucinated content was found to negatively affect clinical",
+      "score": 0.8743
+    }
+  ],
+  "diagnostics": {
+    "provider": "ollama",
+    "chat_model": "gemma4:latest",
+    "embedding_model": "intfloat/multilingual-e5-large",
+    "retrieved_chunks": 5,
+    "tokens": null,
+    "latency_ms": 5980,
+    "timestamp": "2026-07-31T12:00:53Z"
+  }
+}

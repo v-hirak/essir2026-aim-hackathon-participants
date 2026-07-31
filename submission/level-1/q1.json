@@ -1,1 +1,43 @@
-{}
+{
+  "question_id": "qfa4fa3",
+  "level": 1,
+  "question": "How many clinical letters were included in the dataset used in this paper?",
+  "answer": "The dataset used included 204 clinical letters.",
+  "conversation_id": "level-1",
+  "sources": [
+    {
+      "page": 8,
+      "quote": "valuate the usability of these synthetic letters. An overall investigation work ﬂow is shown in Figure 2 . 3.1 Dataset Based on the objective of this project, we need a dataset that includes both clinical notes and some clinical entities. The dataset we used was from the SNOMED CT Entity Linking",
+      "score": 0.8601
+    },
+    {
+      "page": 2,
+      "quote": "es includes unstructured clinical notes, such as process notes, radiology reports, and dischar ge summaries and is published for clinical informatics sharing and natural language processing (NLP) task challenges. However, these shared datasets are often limited to speci ﬁc regions and institutions,",
+      "score": 0.8577
+    },
+    {
+      "page": 10,
+      "quote": "meaning and structure of clinical letters, thereby improving its ability to retain essential clinical information while ef ﬁciently processing the text. In fact, we initially generated letters at the sentence level. However, it was found that processing at the sentence level is not only",
+      "score": 0.8552
+    },
+    {
+      "page": 1,
+      "quote": "ersity of Manchester, Greater Manchester, Manchester, United Kingdom, 2Department of Engineering, University of Cambridge, Cambridge, United Kingdom, 3Leiden Institute of Advanced Computer Science (LIACS) and Leiden University Medical Center (LUMC), Leiden University, Leiden, Netherlands Clinical",
+      "score": 0.852
+    },
+    {
+      "page": 1,
+      "quote": "tion between healthcare departments. These clinical letters typically contain detailed information about patients ’ visits, including their symptoms, medical history, medications, etc. ( 1). They also often include sensitive personal information, such as patients ’ names, phone numbers, and",
+      "score": 0.8504
+    }
+  ],
+  "diagnostics": {
+    "provider": "ollama",
+    "chat_model": "gemma4:latest",
+    "embedding_model": "intfloat/multilingual-e5-large",
+    "retrieved_chunks": 5,
+    "tokens": null,
+    "latency_ms": 11015,
+    "timestamp": "2026-07-31T12:00:37Z"
+  }
+}
