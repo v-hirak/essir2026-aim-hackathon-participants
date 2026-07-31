@@ -18,7 +18,7 @@ class Settings(BaseSettings):
 
     # --- Chat provider (the model that writes answers) ----------------------
     # One of: "lmstudio", "ollama", "litellm". See app/llm/factory.py and .env.example.
-    llm_provider: str = "lmstudio"
+    llm_provider: str = "ollama"
     chat_model: str = "google/gemma-4-e2b"
 
     ollama_base_url: str = "http://localhost:11434"     # keep Ollama's default port
