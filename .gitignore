@@ -21,3 +21,5 @@ data/out/*
 #   - submission/  (your team.json + the nine answers — your deliverable)
 
 CLAUDE.md
+# Qdrant native-binary runtime state (never belongs in the repo)
+storage/
