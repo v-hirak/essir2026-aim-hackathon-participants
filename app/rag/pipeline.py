@@ -52,7 +52,7 @@ def _sources_from(contexts: list[Context]) -> list[Source]:
     for c in contexts:
         quote = c.text.strip().replace("\n", " ")
         if len(quote) > 300:
-            quote = quote[:300].rsplit(" ", 1)[0] + "…"
+            quote = quote[:300].rsplit(" ", 1)[0]
         out.append(Source(page=c.page, quote=quote, score=round(c.score, 4)))
     return out
 
@@ -85,6 +85,8 @@ def answer(req: QueryRequest) -> QueryResponse:
     else:
         contexts = retrieve(req.question, top_k, history)
     messages = _build_messages(req.question, contexts, history)
+    if req.level == 3:
+        messages[0]["content"] += " Cite factual conclusions as (p. X) using the context pages."
 
     try:
         answer_text = client.chat(messages)
