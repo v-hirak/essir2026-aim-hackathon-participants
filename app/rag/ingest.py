@@ -37,7 +37,6 @@ def _find_pdf(filename: str | None) -> Path:
         raise FileNotFoundError(f"no *.pdf found in {in_dir}/ — put your document there first")
     return pdfs[0]
 
-
 def extract_pages(path: Path) -> list[str]:
     """Per-page text via pypdf.
 
